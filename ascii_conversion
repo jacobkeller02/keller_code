@@ -1,0 +1,38 @@
+# write a file that reads in a file, and then takes in a encryption number from the user , then writes out a new file with every letters ascii value being + the encryption number.
+
+
+def read_in() -> str:
+    """Take in a file and return the contents as one long string"""
+    print("Please input a file name: ")
+    user_in = input()
+    open_file = open(user_in, "r")
+    contents = open_file.read()
+    open_file.close()
+    return contents
+    
+def convert_file(param: str) -> str:
+    """Takes a string, converts it to a list that contains the ascci value of the each character, then increases the ascii value by a user inputted amount, and converts it back into its character in a string and writes it to a file """
+    ASCII_convert = []
+    ASCII_values = []
+    for character in param:
+        ASCII_values.append(ord(character))
+    print("Please input a encryption number: ")
+    user_in = input()
+    user_in = int(user_in)
+    converted_list = [x+user_in for x in ASCII_values]
+    for numbers in converted_list:
+        ASCII_convert.append(chr(numbers))
+    str1=""
+    for ele in ASCII_convert: 
+        str1 += ele  
+    text_file = open("sample.txt", "w")
+    n = text_file.write(str1)
+    text_file.close()
+    return str1
+   
+if __name__ == "__main__":
+    file_contents = read_in()
+   
+    print(convert_file(file_contents))
+    
+  
